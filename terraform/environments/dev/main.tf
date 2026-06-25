@@ -1,23 +1,10 @@
-# terraform/environments/dev/main.tf
+resource "azurerm_resource_group" "this" {
+  name     = "rg-${var.project_name}-${var.environment}-${var.location}"
+  location = var.location
 
-terraform {
-  required_version = ">= 1.7"
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "~> 3.0"
-    }
+  tags = {
+    project     = var.project_name
+    environment = var.environment
+    managed_by  = "terraform"
   }
-}
-
-provider "azurerm" {
-  features {}
-  subscription_id = var.subscription_id
-}
-
-module "networking" {
-  source              = "../../modules/networking"
-  prefix              = "azshop"
-  resource_group_name = "rg-azshop-dev"
-  location            = "eastus"
 }
