@@ -1,3 +1,1 @@
-# Demo
-
-Some description!
+# Three Tier Architecture ( Coming soon ) 
